@@ -1,7 +1,7 @@
 ---
 title: "Aides Drug"
-author: "Put your name here!"
-date: "put the date here"
+author: "Mykela Castillejo"
+date: "May 14, 2019"
 output: html_document
 ---
 
@@ -17,9 +17,19 @@ avast <-read.csv(file="avastivironal.csv",header=TRUE)
 
 A new  preventative aides (abacavirinol) is under test in clinical trials. Analyze the effectiveness of this drug across the board. Consider population subgroups by gender, drug use, and sexual orientation. Finish this!
 
+I will first analyze the effectiveness of the drug on between the different genders in this markdown file. 
+
 # Methods
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
+
+For each hypothesis test the graphical summary will be a bar plot. The numerical summary will be a cross tabulation, and a chi-squared test will be used for the inferetial results.
+
+
+```{r}
+results <- read.csv(file = "avastivironal.csv")
+trialtbl=xtabs(~infected+treatment,data=results)
+```
 
 #Results
 
@@ -27,19 +37,48 @@ A new  preventative aides (abacavirinol) is under test in clinical trials. Analy
 
 ## Descriptive Results
 
+$H_o$ abacavirinol has no effect on whether one contracts AIDS or not  
+$H_a$ abacavirinol has an effect on whetherone contracts AIDS or not
+
+We use a bar chart to show the effectiveness of the vaccine on the general population
+
+
 ### Graphical Descriptive Results
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
+
+```{r}
+barchartGC(trialtbl,type = "percent")
+```
+
+The barchart shows that the general population is less likely to contract AIDs if they do take the vaccination.
 
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
+
+```{r}
+colPerc(trialtbl)
+rowPerc(trialtbl)
+```
+
+
 ## Inferential Results
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
 
+```{r}
+chisqtestGC(trialtbl, graph = TRUE)
+```
+```{r}
+fisher.test(trialtbl)
+```
+After doing the fisher test the results show that odds of getting aids while taking the drug is less likely than when the general public take the placebo.  
 
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+<Summarise your results as to the effectiveness of the vaccine with explanations that could be understood by your mom>
+The drug has shown to be effective after looking at the results of the tests we ran. For example the Fisher Test shows that in a one to one ratio it would be very unlikely for one to be diagnosed with AIDs. 
+
