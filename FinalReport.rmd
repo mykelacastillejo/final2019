@@ -51,7 +51,7 @@ We use a bar chart to show the effectiveness of the vaccine on the general popul
 barchartGC(trialtbl,type = "percent")
 ```
 
-The barchart shows that the general population is less likely to contract AIDs if they do take the vaccination.
+The barchart shows that the general population is less likely to contract AIDs if they do take the drug.
 
 ### Numerical Descriptive Results
 
@@ -63,6 +63,7 @@ colPerc(trialtbl)
 rowPerc(trialtbl)
 ```
 
+This is a numerical version of the bar chart from these results show that around 40% of the general population that had taken the drug is less likely to be diagnosed for drugs.
 
 ## Inferential Results
 
@@ -71,14 +72,18 @@ rowPerc(trialtbl)
 ```{r}
 chisqtestGC(trialtbl, graph = TRUE)
 ```
+
+By putting the variable results into the chisqtest the results that the P-value is below 0.5 which shows that we accept the null hypothesis.
+
 ```{r}
 fisher.test(trialtbl)
 ```
+
 After doing the fisher test the results show that odds of getting aids while taking the drug is less likely than when the general public take the placebo.  
 
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
 <Summarise your results as to the effectiveness of the vaccine with explanations that could be understood by your mom>
-The drug has shown to be effective after looking at the results of the tests we ran. For example the Fisher Test shows that in a one to one ratio it would be very unlikely for one to be diagnosed with AIDs. 
+The drug has shown to be effective in preventing AIDs in the general public after looking at the results of the tests we ran. For example the Fisher Test shows that in a one to one ratio it would be very unlikely for one to be diagnosed with AIDs.From the results of the tests the General population should be taking the drug to prevent AIDs. 
 
