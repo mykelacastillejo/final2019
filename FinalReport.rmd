@@ -17,7 +17,7 @@ avast <-read.csv(file="avastivironal.csv",header=TRUE)
 
 A new  preventative aides (abacavirinol) is under test in clinical trials. Analyze the effectiveness of this drug across the board. Consider population subgroups by gender, drug use, and sexual orientation. Finish this!
 
-I will first analyze the effectiveness of the drug on between the different genders in this markdown file. 
+I will first analyze the effectiveness of the drug on between the general population in this markdown file. 
 
 # Methods
 
@@ -38,9 +38,9 @@ trialtbl=xtabs(~infected+treatment,data=results)
 ## Descriptive Results
 
 $H_o$ abacavirinol has no effect on whether one contracts AIDS or not  
-$H_a$ abacavirinol has an effect on whetherone contracts AIDS or not
+$H_a$ abacavirinol has an effect on whether one contracts AIDS or not
 
-We use a bar chart to show the effectiveness of the vaccine on the general population
+We use a bar chart to show the effectiveness of the drug on the general population.
 
 
 ### Graphical Descriptive Results
@@ -63,7 +63,7 @@ colPerc(trialtbl)
 rowPerc(trialtbl)
 ```
 
-This is a numerical version of the bar chart from these results show that around 40% of the general population that had taken the drug is less likely to be diagnosed for drugs.
+This is a numerical version of the bar chart from these results show that the general population that had taken the drug is less likely to be diagnosed for Aids.
 
 ## Inferential Results
 
@@ -85,5 +85,5 @@ After doing the fisher test the results show that odds of getting aids while tak
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
 <Summarise your results as to the effectiveness of the vaccine with explanations that could be understood by your mom>
-The drug has shown to be effective in preventing AIDs in the general public after looking at the results of the tests we ran. For example the Fisher Test shows that in a one to one ratio it would be very unlikely for one to be diagnosed with AIDs.From the results of the tests the General population should be taking the drug to prevent AIDs. 
+The drug has shown to be effective in preventing AIDs in the general public after looking at the results of the tests we ran. For example the Fisher Test shows that the general population has a 0.7% at being diagnosed with AIDs.From the results of the tests the General population should be taking the drug to prevent AIDs. 
 
