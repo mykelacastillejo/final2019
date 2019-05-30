@@ -1,0 +1,92 @@
+---
+title: "FinalReport(Drug-use)"
+author: "Mykela Castillejo"
+date: "May 23, 2019"
+output: html_document
+---
+
+```{r include=FALSE,echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(tidyverse)
+require(tigerstats)
+avast <-read.csv(file="avastivironal.csv",header=TRUE)
+Ivdrug<- filter(avast,Ivdrug == "user")
+```
+
+# Introduction
+
+<!--In this section you explain what you are trying to show.  Where did the data come from?  What is the research or other question you are trying to answer?.  If you skimp in this section expect to be marked down in your grade. Paint a picture of the project a couple of paragraphs is expected!-->
+
+A new  preventative aides (abacavirinol) is under test in clinical trials. Analyze the effectiveness of this drug across the board. Consider population subgroups by gender, drug use, and sexual orientation. Finish this!
+
+I will first analyze the effectiveness of the drug on the feamle participants of the trial in this markdown file. 
+
+# Methods
+
+<!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
+
+For each hypothesis test the graphical summary will be a bar plot. The numerical summary will be a cross tabulation, and a chi-squared test will be used for the inferetial results.
+
+```{r}
+results <- read.csv(file = "avastivironal.csv")
+trialtbl=xtabs(~infected+treatment,data=Ivdrug)
+
+```
+
+#Results
+
+<!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
+
+## Descriptive Results
+
+$H_o:$ The drug to prevent the AIDs for interveinous drug users has no effect
+ 
+$H_a:$ The drug to prevent the AIDs for interveinous drug users has an effect
+
+We use a bar chart to show the effectiveness of the Drug on the Participants that are also taking the Ivdrug
+
+### Graphical Descriptive Results
+
+<!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
+
+
+```{r}
+barchartGC(~infected+treatment, data = Ivdrug , type = "percent")
+
+```
+
+The bar chart shows that those who are taking both drugs are more likely to get Aids. 
+
+### Numerical Descriptive Results
+
+<!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+
+```{r}
+colPerc(trialtbl)
+rowPerc(trialtbl)
+```
+
+This is a numerical version of the bar chart from these results show that 2.7% of the people who were also taking the Ivdrug and had taken the drug to prevent AIDs is actually more likely to be diagnosed for AIDs.
+
+## Inferential Results
+
+<!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+
+
+```{r}
+chisqtestGC(trialtbl, graph = TRUE)
+```
+
+By putting the variable results into the chisqtest the results that the P-value is below 0.5 which shows that we accept the null hypothesis.
+
+```{r}
+fisher.test(trialtbl)
+```
+
+The fisher tests show that those that are taking the Ivdrug and are also using the drug to prevent AIDS are more likely to get AIDS than taking the placebo. 
+
+# Discussion and Conclusion
+
+<!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+<Summarise your results as to the effectiveness of the vaccine with explanations that could be understood by your mom>
+The drug has shown to be ineffective in preventing AIDs in the group that is also taking the Ivdrug after looking at the results of the tests we ran. For example the Fisher Test shows that people have a 2.7% more likely for one to be diagnosed with AIDs.From the results of the tests people who were also taking the Ivdrug should not be taking the drug to prevent AIDs. 
